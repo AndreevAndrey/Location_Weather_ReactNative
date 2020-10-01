@@ -18,14 +18,13 @@ const History = ({ history, setLocation, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
         <View>
-          <Table borderStyle={{ borderWidth: 1, borderColor: '#C1C0B9' }}>
+          <Table>
             <Row data={tableHead} widthArr={widthArr} style={styles.header}
                  textStyle={styles.text}/>
           </Table>
-          <ScrollView style={styles.dataWrapper}>
-            <Table borderStyle={{ borderWidth: 1, borderColor: '#C1C0B9' }}>
+          <ScrollView>
+            <Table>
               {
                 tableData.map((rowData, index) => (
                   <TouchableOpacity key={index} onPress={() => onPress(rowData)}>
@@ -42,16 +41,14 @@ const History = ({ history, setLocation, navigation }) => {
             </Table>
           </ScrollView>
         </View>
-      </ScrollView>
     </View>
   )
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
+  container: { flex: 1, padding: 15, paddingTop: 30, backgroundColor: '#fff',alignItems: 'center'},
   header: { height: 50, backgroundColor: '#537791' },
   text: { textAlign: 'center' },
-  dataWrapper: { marginTop: -1 },
   row: { backgroundColor: '#E7E6E1',height:80, marginTop: 10 }
 });
 

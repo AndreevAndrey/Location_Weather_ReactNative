@@ -77,7 +77,7 @@ class MyLocation extends Component {
                       lat={lastLat}
                       long={lastLong}
         />
-        {isFetching && <ActivityIndicator size='small' color='#0000ff'/>}
+        {isFetching && <ActivityIndicator />}
         {!!weather && <Weather
           temperature={temperature}
           weather={weather}/>}
