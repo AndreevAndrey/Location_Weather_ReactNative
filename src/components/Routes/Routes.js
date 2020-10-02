@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Location from '../Location/Location'
+import Location from '../Location/Location';
 import HistoryContainer from '../History/HistoryContainer';
 
 const Tab = createBottomTabNavigator();

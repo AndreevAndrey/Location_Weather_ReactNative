@@ -1,6 +1,6 @@
 import { fetchWeather, fetchWeatherFailure, fetchWeatherSuccess } from '../appReducer';
 import axios from 'axios';
-import weatherInstance from '../../../apiConfig/weatherInstance';
+import { weatherInstance } from '../../../apiConfig/apiInstance';
 import RequestApi from '../../../apiConfig/requestApi';
 
 export default (lat, long) => async dispatch => {

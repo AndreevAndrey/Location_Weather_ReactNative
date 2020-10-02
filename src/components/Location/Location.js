@@ -6,6 +6,7 @@ import fetchWeather from './Weather/weatherAction';
 import { connect } from 'react-redux';
 import { setHistory, setLocation } from './appReducer';
 import ErrorMessage from '../Error/Error';
+import fetchAddress from './locationAction'
 
 
 class MyLocation extends Component {
@@ -29,13 +30,18 @@ class MyLocation extends Component {
           longitudeDelta: 0.00421 * 1.5
         };
         this.props.setLocation(region, region.latitude, region.longitude);
-        this.props.setHistory({
-          lat: region.latitude,
-          long: region.longitude,
-          date: new Date().toString(),
-          mapRegion: region
-        });
         const { lastLat, lastLong } = this.props.app;
+
+        this.props.fetchAddress(region.latitude, region.longitude).then(() =>
+          this.props.setHistory({
+            lat: region.latitude,
+            long: region.longitude,
+            date: new Date().toString(),
+            mapRegion: region,
+            address: this.props.app.address
+          })
+        );
+
         if (!!lastLat && !!lastLong) {
           this.props.fetchWeather(lastLat, lastLong);
         }
@@ -59,16 +65,19 @@ class MyLocation extends Component {
       longitudeDelta: 0.00421 * 1.5
     };
     this.props.setLocation(region, region.latitude, region.longitude);
-    this.props.setHistory({
-      lat: region.latitude,
-      long: region.longitude,
-      date: new Date().toString(),
-      mapRegion: region
-    });
+    this.props.fetchAddress(region.latitude, region.longitude).then(() =>
+      this.props.setHistory({
+        lat: region.latitude,
+        long: region.longitude,
+        date: new Date().toString(),
+        mapRegion: region,
+        address: this.props.app.address
+      })
+    )
   };
 
   render() {
-    const { mapRegion, lastLat, lastLong, temperature, weather, isFetching, error } = this.props.app;
+    const { mapRegion, lastLat, address, lastLong, temperature, weather, isFetching, error } = this.props.app;
     return (
       <View style={styles.main}>
         <ViewLocation region={mapRegion}
@@ -76,8 +85,9 @@ class MyLocation extends Component {
                       onMapPress={this.onMapPress}
                       lat={lastLat}
                       long={lastLong}
+                      address={address}
         />
-        {isFetching && <ActivityIndicator />}
+        {isFetching && <ActivityIndicator/>}
         {!!weather && <Weather
           temperature={temperature}
           weather={weather}/>}
@@ -97,5 +107,5 @@ const mapStateToProps = ({ app }) => ({
   app
 });
 
-export default connect(mapStateToProps, { fetchWeather, setLocation, setHistory })(MyLocation);
+export default connect(mapStateToProps, { fetchWeather, fetchAddress, setLocation, setHistory })(MyLocation);
 
