@@ -1,16 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import  weatherConditions  from '../../../utils/weatherConditions';
+import weatherConditions from '../../../utils/weatherConditions';
 
 const Weather = ({ temperature, weather }) => {
-  return(
+  return (
     <View style={{
       flex: 1,
-      backgroundColor: weatherConditions[weather].color
+      backgroundColor: !!weatherConditions[weather] ? weatherConditions[weather].color : weatherConditions.Default.color
     }}>
       <View style={styles.headerContainer}>
-        <MaterialCommunityIcons size={48} name={weatherConditions[weather].icon} color={'#fff'}/>
+        <MaterialCommunityIcons size={48}
+                                name={!!weatherConditions[weather] ?
+                                  weatherConditions[weather].icon :
+                                  weatherConditions.Default.icon} color={'#fff'}/>
         <Text style={styles.tempText}>{temperature}˚</Text>
         <Text style={styles.title}>{weather}</Text>
       </View>

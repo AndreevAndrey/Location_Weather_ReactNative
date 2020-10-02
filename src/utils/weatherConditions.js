@@ -39,5 +39,15 @@ export default {
     color: '#3CD3AD',
     subtitle: 'Mist',
     icon: 'weather-fog'
+  },
+  Smoke: {
+    color: '#616161',
+    subtitle: 'Smoke',
+    icon: 'weather-cloudy',
+  },
+  Default: {
+    color: '#537791',
+    subtitle: 'Weather',
+    icon: 'weather-hazy'
   }
 };
