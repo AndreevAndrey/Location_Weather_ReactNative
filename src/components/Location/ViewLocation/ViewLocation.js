@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker } from 'react-native-maps';
 
-const ViewLocation = ({ lat, long, onRegionChange, region, onMapPress }) => (
+const ViewLocation = ({ lat, long, onRegionChange, region, onMapPress, address }) => (
   <View style={{ flex: 3 }}>
     <View style={{ flex: 1 }}>
       <MapView
@@ -25,6 +25,7 @@ const ViewLocation = ({ lat, long, onRegionChange, region, onMapPress }) => (
       alignItems: 'flex-start',
       padding: 10
     }}>
+      <Text style={{ color: '#537791' }}>Address: {address}</Text>
       <Text style={{ color: '#000' }}>
         Coordinates: {lat} / {long}
       </Text>
