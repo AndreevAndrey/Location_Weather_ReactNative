@@ -26,7 +26,7 @@ const History = ({ history, setLocation, navigation }) => {
           <Row data={tableHead} widthArr={widthArr} style={styles.header}
                textStyle={styles.text}/>
         </Table>
-        <ScrollView>
+        <ScrollView style={{height: 800}}>
           <Table>
             {
               tableData.map((rowData, index) => (
