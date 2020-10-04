@@ -38,7 +38,8 @@ const appReducer = (state = initialState, action) => {
     case FETCH_WEATHER: {
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
+        error:''
       }
     }
     case FETCH_WEATHER_SUCCESS: {
@@ -59,7 +60,8 @@ const appReducer = (state = initialState, action) => {
     case FETCH_ADDRESS: {
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
+        error:''
       }
     }
     case FETCH_ADDRESS_SUCCESS: {

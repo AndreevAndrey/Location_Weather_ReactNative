@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, PermissionsAndroid, Platform } from 'react-native';
 import ViewLocation from './ViewLocation/ViewLocation';
 import Weather from './Weather/Weather';
 import fetchWeather from './Weather/weatherAction';
@@ -10,6 +10,19 @@ import fetchAddress from './locationAction'
 
 class MyLocation extends Component {
   async componentDidMount() {
+    if (Platform.OS === 'android') {
+      const status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION, {
+        'title': 'Location Permission',
+        'message': 'This App needs access to your location ' +
+          'so we can know where you are.',
+        buttonPositive: "OK",
+      });
+
+      if (status !== PermissionsAndroid.RESULTS.GRANTED) {
+        alert(`You haven't granted access to geolocation`)
+      }
+    }
+
     this.watchID = navigator.geolocation.watchPosition((position) => {
         let region = {
           latitude: position.coords.latitude,
